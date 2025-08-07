@@ -15,3 +15,7 @@ systemctl restart ssh
 echo "Install vncserver"
 
 apt -y install tigervnc-standalone-server
+
+
+echo "Add a alias to start vncserver"
+echo "alias vncs='tigervncserver -xstartup /usr/bin/gnome-session -SecurityTypes VncAuth,TLSVnc -geometry 1980x1020 -localhost no :58'" | sudo tee -a /etc/bash.bashrc
