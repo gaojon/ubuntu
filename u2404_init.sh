@@ -4,7 +4,7 @@
 echo "Adding new user"
 
 mkdir /home/jon
-useradd jon -d /home/jon -G sudo -p root123 
+useradd jon -d /home/jon -G sudo -s /bin/bash
 chown jon /home/jon
 
 echo "Enable sshd"
