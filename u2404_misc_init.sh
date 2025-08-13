@@ -20,7 +20,9 @@ apt -y install openssh-server -qq
 systemctl restart ssh
 
 echo "#######################  Install GPU driver    ######################"
-
+wget https://repo.radeon.com/amdgpu-install/6.4.3/ubuntu/noble/amdgpu-install_6.4.60403-1_all.deb
+apt install ./amdgpu-install_6.4.60403-1_all.deb
+apt update
 apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)" -q -y
 apt install amdgpu-dkms -q -y
 
