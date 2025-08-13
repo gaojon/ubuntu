@@ -25,7 +25,8 @@ systemctl stop docker.socket
 systemctl stop containerd
 
 echo "{ " >> /etc/docker/daemon.json
-echo " \"data-root": "/home1/jon/docker\" " >>  /etc/docker/daemon.json
-echo "} " >> /etc/docker/daemon.json
+echo "   \"data-root\": \"/home1/jon/docker\" " >>  /etc/docker/daemon.json
+echo "}" >> /etc/docker/daemon.json
+echo " " >> /etc/docker/daemon.json
 
 systemctl start docker
