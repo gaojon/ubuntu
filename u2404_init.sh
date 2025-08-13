@@ -19,7 +19,7 @@ echo "#######################    Enable sshd    #########################"
 apt -y install openssh-server -qq
 systemctl restart ssh
 
-echo "#######################  Install docker   ######################"
+echo "#######################  Install docker    ######################"
 
 apt-get update
 apt-get install ca-certificates curl -y -qq
@@ -35,6 +35,17 @@ sudo apt-get update -qq
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y -qq
 
+echo "#######################  config docker repo   ######################"
+systemctl stop docker
+systemctl stop docker.socket
+systemctl stop containerd
+
+echo "{ " >> /etc/docker/daemon.json
+echo " \"data-root": "/home1/jon/docker\" " >>  /etc/docker/daemon.json
+echo "} " >> /etc/docker/daemon.json
+
+systemctl start docker
+
 echo "#######################  Install vncserver   ######################"
 
 apt -y install tigervnc-standalone-server -qq
@@ -49,6 +60,6 @@ echo "Only works when start vncserver from SSH terminal"
 echo "It's safe to ignore the error in vnc log file:"
 echo "    libEGL warning: failed to open /dev/dri/card1: Permission denied"
 
-echo "################ Add a alias to start vncserver  ##################"
+echo "################ set passwd for user jon  ##################"
 passwd jon
 
