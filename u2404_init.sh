@@ -24,17 +24,6 @@ echo "#######################  Install GPU driver    ######################"
 apt install "linux-headers-$(uname -r)" "linux-modules-extra-$(uname -r)" -q -y
 apt install amdgpu-dkms -q -y
 
-echo "#######################  config docker repo   ######################"
-systemctl stop docker
-systemctl stop docker.socket
-systemctl stop containerd
-
-echo "{ " >> /etc/docker/daemon.json
-echo " \"data-root": "/home1/jon/docker\" " >>  /etc/docker/daemon.json
-echo "} " >> /etc/docker/daemon.json
-
-systemctl start docker
-
 echo "#######################  Install vncserver   ######################"
 
 apt -y install tigervnc-standalone-server -qq
