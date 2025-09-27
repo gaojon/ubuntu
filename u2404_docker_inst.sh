@@ -18,6 +18,14 @@ sudo apt-get update -qq
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y -qq
 
 
+echo "###################  check if /repo/docker exist   ##############"
+if [ ! -d "/repo/docker" ]; then
+    # Create the directory (including parent directories if needed)
+    mkdir -p "/repo/docker"
+    echo "Directory /repo/docker created successfully"
+else
+    echo "Directory /repo/docker already exists"
+fi
 
 echo "#######################  config docker repo   ######################"
 systemctl stop docker
@@ -25,7 +33,7 @@ systemctl stop docker.socket
 systemctl stop containerd
 
 echo "{ " >> /etc/docker/daemon.json
-echo "   \"data-root\": \"/home1/jon/docker\" " >>  /etc/docker/daemon.json
+echo "   \"data-root\": \"/repo/docker\" " >>  /etc/docker/daemon.json
 echo "}" >> /etc/docker/daemon.json
 echo " " >> /etc/docker/daemon.json
 
