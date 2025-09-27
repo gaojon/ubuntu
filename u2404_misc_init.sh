@@ -1,19 +1,6 @@
 #!/bin/bash
 #24.04 LTS
 
-echo "#######################  Mount /home1/     ########################"
-mkdir -p /home1/jon
-mount /dev/disk/by-uuid/5af4352a-692e-4df3-8343-aa762f9f40f7 /home1/jon
-
-echo "/dev/disk/by-uuid/5af4352a-692e-4df3-8343-aa762f9f40f7  /home1/jon  ext4 defaults 0 1" | tee -a /etc/fstab
-
-echo "#######################  Adding new user   ########################"
-
-useradd jon -d /home1/jon -G sudo,render,video -s /bin/bash
-
-chown jon -R /home1/jon
-chgrp jon -R /home1/jon
-
 echo "#######################    Enable sshd    #########################"
 
 apt -y install openssh-server -qq
